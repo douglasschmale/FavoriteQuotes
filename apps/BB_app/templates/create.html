@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Create an Item</title>
+    <style media="screen">
+      .messages {
+        color:red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Create a New Wish List Item</h1><br><br>
+    <form action="add" method="post">
+      {% csrf_token %}
+      Item/Product: <input type="text" name="product"><br><br>
+      <input type="submit" value="Add New Product!">
+    </form>
+    {% if messages %}
+      <ul class="messages">
+          {% for message in messages %}
+          <li>{{ message }}</li>
+          {% endfor %}
+      </ul>
+    {% endif %}
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <a href="../logout" class="logout">Logout</a>
+    <h1>Hello, {{request.session.user}}</h1><br><br>
+
+    <h3>Your Wish List</h3>
+
+    <table border=1px>
+      <tr>
+        <th>Item</th>
+        <th>Added by</th>
+        <th>Date added</th>
+        <th>Remove From Wishlist</th>
+        <th>Delete Item</th>
+      </tr>
+<!-- {{user.user_trips}} -->
+      {% for i in favs %}
+          <tr>
+            <td><a href="../wish_items/{{i.id}}">{{i.product}}</a></td>
+            <td>{{i.creator.first}}</td>
+            <td>{{i.created_at}}</td>
+            <td><a href="../remove/{{i.id}}">Remove From Wishlist</a></td>
+            <td><a href="../delete/{{i.id}}">Delete Item</a></td>
+          </tr>
+      {% endfor %}
+    </table><br><br>
+
+    <table border=1px>
+      <tr>
+        <th>Item</th>
+        <th>Added by</th>
+        <th>Date added</th>
+        <th>Add to My Wishlist</th>
+      </tr>
+<!-- {{user.user_trips}} -->
+      {% for i in products %}
+          <tr>
+            <td><a href="wish_items/{{i.id}}">{{i.product}}</a></td>
+            <td>{{i.creator.first}}</td>
+            <td>{{i.created_at}}</td>
+            <td><a href="../favorited/{{i.id}}">Add to My Wishlist</a></td>
+          </tr>
+      {% endfor %}
+    </table>
+    <a href="/create">Add Item</a>
+  </body>
+</html>
